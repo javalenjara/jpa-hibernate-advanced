@@ -26,11 +26,13 @@ public class DemoJpaAdvancedApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Course course = courseRepository.findById(1001L);
-        logger.info("Course 1001 {}", course);
+//        Course course = courseRepository.findById(1001L);
+//        logger.info("Course 1001 {}", course);
+//
+//        //courseRepository.deleteById(1001L);
+//
+//        courseRepository.save(new Course("Microservices"));
 
-        //courseRepository.deleteById(1001L);
-
-        courseRepository.save(new Course("Microservices"));
+        courseRepository.playWithEntityManager();
     }
 }

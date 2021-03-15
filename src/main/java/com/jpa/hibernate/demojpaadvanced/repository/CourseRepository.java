@@ -38,10 +38,20 @@ public class CourseRepository {
     }
 
     public void playWithEntityManager() {
-        Course course = new Course("Web Services");
-        em.persist(course);
-        course.setName("Web Services updated");
+        Course course1 = new Course("Web Services");
+        em.persist(course1);
+        em.flush();
 
+        course1.setName("Web Services updated");
+        em.flush();
 
+        Course course2 = new Course("Angular JS");
+        em.persist(course2);
+        em.flush();
+
+        em.detach(course2);
+
+        course2.setName("Angular JS updated");
+        em.flush();
     }
 }
