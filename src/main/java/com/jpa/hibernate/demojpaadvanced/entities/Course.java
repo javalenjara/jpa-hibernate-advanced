@@ -1,8 +1,6 @@
 package com.jpa.hibernate.demojpaadvanced.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Course {
@@ -11,6 +9,7 @@ public class Course {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     public Course() {
