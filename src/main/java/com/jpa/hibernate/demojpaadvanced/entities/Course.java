@@ -1,6 +1,10 @@
 package com.jpa.hibernate.demojpaadvanced.entities;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Course {
@@ -11,6 +15,12 @@ public class Course {
 
     @Column(nullable = false)
     private String name;
+
+    @UpdateTimestamp
+    private LocalDateTime lastUpdatedDate;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 
     public Course() {
     }
