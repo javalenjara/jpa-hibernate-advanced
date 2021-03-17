@@ -38,10 +38,10 @@ public class CourseRepository {
     }
 
     public void playWithEntityManager() {
-        Course course1 = new Course("Web Services");
-        course1.setName(null);
+        Course course1 = new Course("Web Services part 2");
         em.persist(course1);
 
-        em.flush();
+        Course course2 = findById(1001L);
+        course2.setName("JPA course - updated");
     }
 }
