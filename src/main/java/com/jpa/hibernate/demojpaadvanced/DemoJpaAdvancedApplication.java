@@ -33,6 +33,6 @@ public class DemoJpaAdvancedApplication implements CommandLineRunner {
 //
 //        courseRepository.save(new Course("Microservices"));
 
-        courseRepository.playWithEntityManager();
+//        courseRepository.playWithEntityManager();
     }
 }
