@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 @SpringBootTest(classes = DemoJpaAdvancedApplication.class)
 class StudentRepositoryTests {
@@ -22,8 +23,9 @@ class StudentRepositoryTests {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Test
+    @Transactional
     public void retrieveStudentAndPassportDetails() {
-        Student student = em.find(Student.class, 2001L);
+        Student student = em.find(Student.class, 2002L);
         logger.info("Student -> {}", student);
         logger.info("Passport -> {}", student.getPassport());
     }
