@@ -1,9 +1,6 @@
 package com.jpa.hibernate.demojpaadvanced.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -15,7 +12,8 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
-    private Passport;
+    @OneToOne
+    private Passport passport;
 
     public Student() { }
 
@@ -37,6 +35,14 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 
     @Override
