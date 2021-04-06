@@ -38,6 +38,14 @@ public class Passport {
         this.number = number;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     @Override
     public String toString() {
         return "Passport{" +

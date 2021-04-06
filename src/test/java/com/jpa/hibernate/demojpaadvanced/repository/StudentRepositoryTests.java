@@ -32,6 +32,14 @@ class StudentRepositoryTests {
     }
 
     @Test
+    @Transactional
+    public void retrievePassportAndAssociatedStudent() {
+        Passport passport = em.find(Passport.class, 4001L);
+        logger.info("Student -> {}", passport);
+        logger.info("Passport -> {}", passport.getStudent());
+    }
+
+    @Test
     @Transactional //Persistence Context. The changes below are made in the Persistence Context (PC).
     // In Hibernate, Session (Session Factory) = Persistence Context.
     // If we extract the below LoCs into a new method which actually uses the EM, then the PC will be provided by
