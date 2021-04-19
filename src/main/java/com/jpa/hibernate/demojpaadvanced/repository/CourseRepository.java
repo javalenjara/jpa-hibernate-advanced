@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public class CourseRepository {
@@ -48,7 +50,8 @@ public class CourseRepository {
         course2.setName("JPA course - updated");
     }
 
-    public void addReviewsForCourse() {
+    //static approach
+    /*public void addReviewsForCourse() {
         //get te course 1003
         Logger logger = LoggerFactory.getLogger(this.getClass());
         Course course = findById(1003L);
@@ -68,5 +71,22 @@ public class CourseRepository {
         //save it to the DB
         em.persist(review1);
         em.persist(review2);
+    }*/
+
+    //More generic addReviewsForCourse method
+    public void addReviewsForCourse(Long courseId, List<Review> reviews) {
+
+        Course course = findById(courseId);
+        reviews.stream().forEach(review -> {
+            course.addReview(review);
+            review.setCourse(course);
+            em.persist(review);
+        });
+
+        /*for (Review review : reviews) {
+            course.addReview(review);
+            review.setCourse(course);
+            em.persist(review);
+        }*/
     }
 }
