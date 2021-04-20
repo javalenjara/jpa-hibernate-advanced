@@ -1,5 +1,6 @@
 package com.jpa.hibernate.demojpaadvanced.repository;
 
+import com.jpa.hibernate.demojpaadvanced.entities.Course;
 import com.jpa.hibernate.demojpaadvanced.entities.Student;
 import com.jpa.hibernate.demojpaadvanced.entities.Passport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,27 @@ public class StudentRepository {
         Student student = new Student("Marina");
         student.setPassport(passport);
         em.persist(student);
+    }
+
+    public void insertStudentAndCourse(){
+        Student student = new Student("Jack");
+        Course course = new Course("Microservices");
+        em.persist(student);
+        em.persist(course);
+
+        //stablishint the relationship
+        student.addCourse(course);
+        course.addStudent(student);
+
+        //persist the owning side.
+        em.persist(student);
+    }
+
+    public void insertStudentAndCourse(Student student, Course course){
+        student.addCourse(course);
+        course.addStudent(student);
+
+        em.persist(student);
+        em.persist(course);
     }
 }

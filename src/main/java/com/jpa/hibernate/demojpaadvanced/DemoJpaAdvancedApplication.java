@@ -1,6 +1,8 @@
 package com.jpa.hibernate.demojpaadvanced;
 
+import com.jpa.hibernate.demojpaadvanced.entities.Course;
 import com.jpa.hibernate.demojpaadvanced.entities.Review;
+import com.jpa.hibernate.demojpaadvanced.entities.Student;
 import com.jpa.hibernate.demojpaadvanced.repository.CourseRepository;
 import com.jpa.hibernate.demojpaadvanced.repository.StudentRepository;
 import org.slf4j.Logger;
@@ -34,9 +36,13 @@ public class DemoJpaAdvancedApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //studentRepository.saveStudentWithPassport();
-        List<Review> reviews = new ArrayList<>();
-        reviews.add(new Review("5", "Great Hands-on"));
-        reviews.add(new Review("5", "Hats off"));
-        courseRepository.addReviewsForCourse(1003L, reviews);
+//        List<Review> reviews = new ArrayList<>();
+//        reviews.add(new Review("5", "Great Hands-on"));
+//        reviews.add(new Review("5", "Hats off"));
+//        courseRepository.addReviewsForCourse(1003L, reviews);
+        //studentRepository.insertStudentAndCourse();
+        studentRepository.insertStudentAndCourse(
+                new Student("Jack"),
+                new Course("Microservices"));
     }
 }
