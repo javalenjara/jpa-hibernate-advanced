@@ -1,6 +1,7 @@
 package com.jpa.hibernate.demojpaadvanced.repository;
 
 import com.jpa.hibernate.demojpaadvanced.DemoJpaAdvancedApplication;
+import com.jpa.hibernate.demojpaadvanced.entities.Course;
 import com.jpa.hibernate.demojpaadvanced.entities.Passport;
 import com.jpa.hibernate.demojpaadvanced.entities.Student;
 import org.junit.jupiter.api.Test;
@@ -58,4 +59,20 @@ class StudentRepositoryTests {
         //DB Op 4: Update student
         student.setName("Jorge - updtd");
     }// killed the PC.
+
+    @Test
+    @Transactional
+    public void retrieveStudentAndCourses() {
+        Student student = em.find(Student.class, 2001L);
+        logger.info("Student -> {}", student);
+        logger.info("Courses -> {}", student.getCourses());
+    }
+
+    @Test
+    @Transactional
+    public void retrieveCourseAndStudents() {
+        Course course = em.find(Course.class, 1001L);
+        logger.info("Course -> {}", course);
+        logger.info("Students -> {}", course.getStudents());
+    }
 }

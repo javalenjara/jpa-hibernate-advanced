@@ -36,7 +36,7 @@ public class DemoJpaAdvancedApplication implements CommandLineRunner {
         //studentRepository.saveStudentWithPassport();
         List<Review> reviews = new ArrayList<>();
         reviews.add(new Review("5", "Great Hands-on"));
-        reviews.add(new Review("5", "Hatsoff"));
+        reviews.add(new Review("5", "Hats off"));
         courseRepository.addReviewsForCourse(1003L, reviews);
     }
 }
