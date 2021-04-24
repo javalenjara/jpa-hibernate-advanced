@@ -52,7 +52,8 @@ public class DemoJpaAdvancedApplication implements CommandLineRunner {
         employeeRepository.insert(pte);
         employeeRepository.insert(fte);
 
-        logger.info("All Employees -> {}", employeeRepository.retrieveAllEmployees());
+        logger.info("Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployees());
+        logger.info("Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployees());
 
     }
 }

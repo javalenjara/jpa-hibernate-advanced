@@ -8,9 +8,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "EmployeeType")
+//@Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(name = "EmployeeType") para la estrategia TABLE_PER_CLASS, esta anotación no se requiere.
+@MappedSuperclass
 public abstract class Employee {
 
     @Id
