@@ -49,11 +49,11 @@ public class DemoJpaAdvancedApplication implements CommandLineRunner {
 //                new Course("Microservices"));
         FullTimeEmployee fte = new FullTimeEmployee("Jack", new BigDecimal("10000"));
         PartTimeEmployee pte = new PartTimeEmployee("Jill", new BigDecimal("50"));
-        employeeRepository.insert(pte);
+/*        employeeRepository.insert(pte);
         employeeRepository.insert(fte);
 
         logger.info("Part Time Employees -> {}", employeeRepository.retrieveAllPartTimeEmployees());
-        logger.info("Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployees());
+        logger.info("Full Time Employees -> {}", employeeRepository.retrieveAllFullTimeEmployees());*/
 
     }
 }
