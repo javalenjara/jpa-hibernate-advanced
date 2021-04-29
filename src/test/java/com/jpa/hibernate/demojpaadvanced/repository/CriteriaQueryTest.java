@@ -12,10 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @SpringBootTest(classes = DemoJpaAdvancedApplication.class)
@@ -35,6 +32,7 @@ class CriteriaQueryTest {
         2. Define roots for tables which are involver in the query
         3. Define Pedicates etc, using Criteria Builder
         4. Add Predicates etc, to the Criteria Query
+        5. Build the TypedQuery using the entity manager and criteria query
         *
         * */
 
@@ -59,6 +57,7 @@ class CriteriaQueryTest {
         2. Define roots for tables which are involver in the query
         3. Define Pedicates etc, using Criteria Builder
         4. Add Predicates etc, to the Criteria Query
+        5. Build the TypedQuery using the entity manager and criteria query
         *
         * */
 
@@ -75,5 +74,92 @@ class CriteriaQueryTest {
         TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
         List<Course> resultList = query.getResultList();
         logger.info("Typed Query -> {}", resultList);
+    }
+
+    @Test
+    public void all_courses_without_students() {
+        //Select c From Course c where c.students is empty
+        //Define de previous query using java
+        /*
+        1. Use Criteria Builder to create a Criteria Query returning the expected result object.
+        2. Define roots for tables which are involver in the query
+        3. Define Pedicates etc, using Criteria Builder
+        4. Add Predicates etc, to the Criteria Query
+        5. Build the TypedQuery using the entity manager and criteria query
+        *
+        * */
+
+        //1.
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+        //2.
+        Root<Course> courseRoot = cq.from(Course.class);//It's called the root of the query (...From Course c)
+        //3.
+        Predicate studentsIsEmpty = cb.isEmpty(courseRoot.get("students"));
+        //4.
+        cq.where(studentsIsEmpty);
+        //5.
+        TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+        List<Course> resultList = query.getResultList();
+        logger.info("Typed Query -> {}", resultList);
+        //[Course{id=1002, name='Spring course'}]
+    }
+
+    @Test
+    public void join() {
+        //Select c From Course c join c.students
+        //Define de previous query using java
+        /*
+        1. Use Criteria Builder to create a Criteria Query returning the expected result object.
+        2. Define roots for tables which are involver in the query
+        3. Define Pedicates etc, using Criteria Builder
+        4. Add Predicates etc, to the Criteria Query
+        5. Build the TypedQuery using the entity manager and criteria query
+        *
+        * */
+
+        //1.
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+        //2.
+        Root<Course> courseRoot = cq.from(Course.class);//It's called the root of the query (...From Course c)
+
+        //El join se hace con otra colección
+        courseRoot.join("students");
+
+        //5.
+        TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+        List<Course> resultList = query.getResultList();
+        logger.info("Typed Query -> {}", resultList);
+        //[Course{id=1001, name='JPA course'}, Course{id=1001, name='JPA course'}, Course{id=1001, name='JPA course'}, Course{id=1003, name='Spring Boot course'}]
+    }
+
+    @Test
+    public void left_join() {
+        //Select c From Course c join c.students
+        //Define de previous query using java
+        /*
+        1. Use Criteria Builder to create a Criteria Query returning the expected result object.
+        2. Define roots for tables which are involver in the query
+        3. Define Pedicates etc, using Criteria Builder
+        4. Add Predicates etc, to the Criteria Query
+        5. Build the TypedQuery using the entity manager and criteria query
+        *
+        * */
+
+        //1.
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+        //2.
+        Root<Course> courseRoot = cq.from(Course.class);//It's called the root of the query (...From Course c)
+
+        //El join se hace con otra colección
+        courseRoot.join("students", JoinType.LEFT);
+
+        //5.
+        TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+        List<Course> resultList = query.getResultList();
+        logger.info("Typed Query -> {}", resultList);
+        //[Course{id=1001, name='JPA course'}, Course{id=1001, name='JPA course'}, Course{id=1001, name='JPA course'}, Course{id=1002, name='Spring course'}, Course{id=1003, name='Spring Boot course'}]
     }
 }
