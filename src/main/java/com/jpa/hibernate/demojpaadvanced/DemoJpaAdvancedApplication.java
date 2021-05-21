@@ -1,6 +1,7 @@
 package com.jpa.hibernate.demojpaadvanced;
 
-import com.jpa.hibernate.demojpaadvanced.entities.*;
+import com.jpa.hibernate.demojpaadvanced.entities.FullTimeEmployee;
+import com.jpa.hibernate.demojpaadvanced.entities.PartTimeEmployee;
 import com.jpa.hibernate.demojpaadvanced.repository.CourseRepository;
 import com.jpa.hibernate.demojpaadvanced.repository.EmployeeRepository;
 import com.jpa.hibernate.demojpaadvanced.repository.StudentRepository;
@@ -12,8 +13,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class DemoJpaAdvancedApplication implements CommandLineRunner {
