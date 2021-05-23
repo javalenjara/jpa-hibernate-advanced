@@ -2,7 +2,16 @@
 
 insert into course(id, name, created_date, last_updated_date) values (1001, 'JPA course', sysdate(),sysdate());
 insert into course(id, name, created_date, last_updated_date) values (1002, 'Spring course', sysdate(), sysdate());
-insert into course(id, name, created_date, last_updated_date) values (1003, 'Spring Boot course', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1003, 'Generic course 1', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1004, 'Generic course 2', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1005, 'Generic course 3', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1006, 'Generic course 4', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1007, 'Generic course 5', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1008, 'Generic course 6', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1009, 'Generic course 7', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date) values (1010, 'Generic course 8', sysdate(), sysdate());
+
+
 
 insert into passport(id, number) values (4001, 'E123456');
 insert into passport(id, number) values (4002, 'N123456');

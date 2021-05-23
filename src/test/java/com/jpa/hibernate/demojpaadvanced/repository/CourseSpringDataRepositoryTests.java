@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import javax.persistence.EntityManager;
@@ -54,5 +57,18 @@ class CourseSpringDataRepositoryTests {
         //sorting by name in desc order
         Sort sort = Sort.by(Sort.Direction.DESC, "name");
         logger.info("Sorted Courses desc. -> {} ", repository.findAll(sort));
+    }
+
+    @Test
+    public void pagination() {
+        PageRequest pageRequest = PageRequest.of(0, 3);
+        Page<Course> fistPage = repository.findAll(pageRequest);
+        //Imprime cantidad de páginas y de qué instancia son. Ej. Course.
+        logger.info("First page -> {} ", fistPage);
+        logger.info("First page content -> {}", fistPage.getContent());
+
+        Pageable secondPageable = fistPage.nextPageable();
+        Page<Course> secondPage = repository.findAll(secondPageable);
+        logger.info("Second page content -> {}", secondPage.getContent());
     }
 }
