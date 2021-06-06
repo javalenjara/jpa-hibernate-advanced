@@ -71,4 +71,10 @@ class CourseSpringDataRepositoryTests {
         Page<Course> secondPage = repository.findAll(secondPageable);
         logger.info("Second page content -> {}", secondPage.getContent());
     }
+
+    @Test
+    public void findUsingName() {
+        //uses custom query defined in the interface
+        logger.info("Courses by name -> {} ", repository.findByName("Spring course"));
+    }
 }
