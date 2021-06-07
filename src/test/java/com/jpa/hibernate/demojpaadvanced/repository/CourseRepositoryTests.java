@@ -34,6 +34,25 @@ class CourseRepositoryTests {
     }
 
     @Test
+    @Transactional
+    public void findById_firstLevelCacheDemo() {
+
+        //The first time, it goes to the DB as normally it does, with a select * from...
+        Course course = courseRepository.findById(1001L);
+        logger.info("First course retrieved {}", course);
+
+        //The Course entity is cached so the 2nd time it needs the course info a query is not fired into the DB.
+        //It happens because we are in the same persistence context which is scoped by the @Transactional annotation
+        //in this method. If we removed the @Transactional annotation 2 subsequent queries will be fired into the DB.
+
+        Course course1 = courseRepository.findById(1001L);
+        logger.info("First course retrieved again {}", course1);
+
+        assertEquals("JPA course", course.getName());
+        assertEquals("JPA course", course1.getName());
+    }
+
+    @Test
     @DirtiesContext
     public void deleteById_basic() {
         courseRepository.deleteById(1002L);
