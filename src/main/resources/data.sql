@@ -1,9 +1,9 @@
 -- noinspection SqlResolveForFile
 
-insert into course(id, name, created_date, last_updated_date) values (1001, 'JPA course', sysdate(),sysdate());
-insert into course(id, name, created_date, last_updated_date) values (1002, 'Spring course', sysdate(), sysdate());
-insert into course(id, name, created_date, last_updated_date) values (1003, 'Generic course 1', sysdate(), sysdate());
-insert into course(id, name, created_date, last_updated_date) values (1004, 'Generic course 2', sysdate(), sysdate());
+insert into course(id, name, created_date, last_updated_date, is_deleted) values (1001, 'JPA course', sysdate(),sysdate(), false);
+insert into course(id, name, created_date, last_updated_date, is_deleted) values (1002, 'Spring course', sysdate(), sysdate(), false);
+insert into course(id, name, created_date, last_updated_date, is_deleted) values (1003, 'Generic course 1', sysdate(), sysdate(), false);
+insert into course(id, name, created_date, last_updated_date, is_deleted) values (1004, 'Generic course 2', sysdate(), sysdate(), false);
 
 insert into passport(id, number) values (4001, 'E123456');
 insert into passport(id, number) values (4002, 'N123456');

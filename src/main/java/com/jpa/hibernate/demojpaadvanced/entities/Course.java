@@ -2,7 +2,9 @@ package com.jpa.hibernate.demojpaadvanced.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +17,8 @@ import java.util.List;
         @NamedQuery(name = "query_get_ending_in_course_courses", query = "Select c From Course c where name like '%course'")
 })
 @Cacheable
+@SQLDelete(sql = "update course set is_deleted = true where id = ?")
+@Where(clause = "is_deleted = false")
 public class Course {
 
     @Id
@@ -36,6 +40,8 @@ public class Course {
 
     @CreationTimestamp
     private LocalDateTime createdDate;
+
+    private boolean isDeleted;
 
     public Course() {
     }
