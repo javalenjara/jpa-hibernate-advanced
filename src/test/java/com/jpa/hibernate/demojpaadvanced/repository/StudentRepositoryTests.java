@@ -1,6 +1,7 @@
 package com.jpa.hibernate.demojpaadvanced.repository;
 
 import com.jpa.hibernate.demojpaadvanced.DemoJpaAdvancedApplication;
+import com.jpa.hibernate.demojpaadvanced.entities.Address;
 import com.jpa.hibernate.demojpaadvanced.entities.Course;
 import com.jpa.hibernate.demojpaadvanced.entities.Passport;
 import com.jpa.hibernate.demojpaadvanced.entities.Student;
@@ -74,5 +75,16 @@ class StudentRepositoryTests {
         Course course = em.find(Course.class, 1001L);
         logger.info("Course -> {}", course);
         logger.info("Students -> {}", course.getStudents());
+    }
+
+    @Test
+    @Transactional
+    public void setAddressForStudent() {
+        Student student = em.find(Student.class, 2001L);
+        Address address = new Address("Fake st 123", "Dep. 1A", "Albuquerque");
+        student.setAddress(address);
+        em.flush();
+        logger.info("Student -> {}", student);
+        logger.info("Address -> {}", student.getAddress());
     }
 }

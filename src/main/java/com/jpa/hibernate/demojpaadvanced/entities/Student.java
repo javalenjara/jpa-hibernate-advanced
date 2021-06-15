@@ -17,6 +17,9 @@ public class Student {
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
 
+    @Embedded
+    private Address address;
+
     @ManyToMany
     @JoinTable(name = "STUDENT_COURSE",
         joinColumns = @JoinColumn(name = "STUDENT_ID"),
@@ -59,6 +62,14 @@ public class Student {
 
     public void addCourse(Course course) {
         this.courses.add(course);
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
